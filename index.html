@@ -274,16 +274,18 @@ for(const name in subjects){
   const s=subjects[name];
 
   const card=document.createElement("div");
-  card.className="subject";
+  card.className="subject"
 
-  card.innerHTML=`
-    <h2>${name}</h2>
-    <p>${s.description}</p>
-    <button onclick="showSummary('${name}')">📝 Resumo</button>
-    <<button onclick="searchTopic('${name}')">🔎 Procurar assunto</button>button onclick="showQuiz('${name}')">🧠 Quiz</button>
-  `;
+card.innerHTML=`
+<h2>${name}</h2>
+<p>${s.description}</p>
 
-  subjectsBox.appendChild(card);
+<button onclick="showSummary('${name}')">📝 Resumo</button>
+
+<button onclick="searchTopic('${name}')">🔎 Procurar assunto</button>
+
+<button onclick="showQuiz('${name}')">🧠 Quiz</button>
+`;  subjectsBox.appendChild(card);
 }
 
 function showSummary(name){
