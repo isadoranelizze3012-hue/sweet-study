@@ -288,7 +288,20 @@ card.innerHTML=`
 `;  subjectsBox.appendChild(card);
 }
 
-function showSummary(name){
+function searchTopic(name){
+  const topic=prompt("🔎 Qual assunto você quer estudar em "+name+"?");
+  if(!topic)return;
+
+  content.style.display="block";
+
+  content.innerHTML=`
+    <h2>🔎 ${name}: ${topic}</h2>
+    <p>Pesquisando o assunto <b>${topic}</b>...</p>
+    <button onclick="closeContent()">← Voltar</button>
+  `;
+
+  content.scrollIntoView({behavior:"smooth"});
+}function showSummary(name){
 
   content.style.display="block";
 
