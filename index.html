@@ -1,24 +1,397 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sweet Study 🎀</title><style>
-*{box-sizing:border-box}body{margin:0;background:#fff8fb;color:#604d57;font-family:Arial,sans-serif}header{padding:18px 6%;background:white;box-shadow:0 2px 12px #0001}.logo{color:#c77d9a;font-size:26px;font-weight:bold}.wrap{max-width:1050px;margin:auto;padding:35px 6%}.hero{text-align:center;padding:30px}.hero h1{font-size:clamp(35px,7vw,58px);color:#9d617c}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border-radius:22px;padding:22px;box-shadow:0 7px 22px #84556915}.subject{cursor:pointer}.subject:hover{transform:translateY(-3px)}.emoji{font-size:38px}.btn{border:0;border-radius:25px;padding:13px 20px;background:#d996b0;color:white;font-weight:bold;font-size:15px;cursor:pointer}.back{background:#ead0db;color:#7c5c69}.hidden{display:none!important}.box{margin-top:18px;background:#fff7fa}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:9px 13px;background:#f8e2eb;border-radius:18px;color:#a35f7c}@media(max-width:700px){.grid{grid-template-columns:1fr}.subject{display:flex;gap:15px;align-items:center}.hero h1{font-size:40px}.btn{width:100%;margin-top:7px}}
-</style></head><body><header><div class="logo">🎀 Sweet Study</div></header><main class="wrap">
-<section id="home"><div class="hero"><div class="emoji">🌷✨</div><h1>Study a little,<br>dream a lot.</h1><p>Seu cantinho aesthetic de estudos 💗</p></div><h2>📚 Minhas matérias</h2><div class="grid">
-<div class="card subject" onclick="openS('Matemática','➗')"><span class="emoji">➗</span><div><h3>Matemática</h3><p>Exercícios e revisões</p></div></div>
-<div class="card subject" onclick="openS('História','🏛️')"><span class="emoji">🏛️</span><div><h3>História</h3><p>Resumos e conteúdos</p></div></div>
-<div class="card subject" onclick="openS('Ciências','🔬')"><span class="emoji">🔬</span><div><h3>Ciências</h3><p>Revisões e quizzes</p></div></div>
-<div class="card subject" onclick="openS('Português','📖')"><span class="emoji">📖</span><div><h3>Português</h3><p>Gramática e interpretação</p></div></div>
-<div class="card subject" onclick="openS('Geografia','🌎')"><span class="emoji">🌎</span><div><h3>Geografia</h3><p>Mapas e revisões</p></div></div>
-<div class="card subject" onclick="openS('Inglês','🇺🇸')"><span class="emoji">🇺🇸</span><div><h3>Inglês</h3><p>Vocabulário e gramática</p></div></div>
-<div class="card subject" onclick="openS('Artes','🎨')"><span class="emoji">🎨</span><div><h3>Artes</h3><p>Arte, artistas e movimentos</p></div></div>
-</div></section>
-<section id="page" class="hidden"><button class="btn back" onclick="back()">← Voltar</button><div class="card" style="margin-top:18px;text-align:center"><div id="emo" class="emoji"></div><h2 id="title"></h2><div class="grid">
-<div class="card"><div class="emoji">📚</div><h3>Conteúdos</h3><button class="btn" onclick="content()">Abrir</button></div>
-<div class="card"><div class="emoji">📝</div><h3>Resumo</h3><button class="btn" onclick="summary()">Escrever</button></div>
-<div class="card"><div class="emoji">🧠</div><h3>Quiz</h3><button class="btn" onclick="quiz()">Fazer quiz</button></div></div><div id="box" class="card box hidden"></div></div></section>
-</main><script>
-const c={Matemática:'Frações • Equações • Porcentagem • Geometria • Sistemas',História:'Renascimento • Grandes Navegações • Brasil Colonial • Mercantilismo',Ciências:'Energia • Calor • Corpo humano • Meio ambiente',Português:'Gramática • Interpretação • Figuras de linguagem • Verbos',Geografia:'Biomas • Clima • Relevo • Globalização • Cartografia',Inglês:'Vocabulary • Verb to be • Simple Present • Pronouns • Reading',Artes:'Renascimento • Impressionismo • Arte moderna • Artistas • Cores'};
-function openS(n,e){home.classList.add('hidden');page.classList.remove('hidden');title.textContent=n;emo.textContent=e;box.classList.add('hidden');scrollTo(0,0)}
-function back(){page.classList.add('hidden');home.classList.remove('hidden');scrollTo(0,0)}
-function content(){box.innerHTML='<h3>📚 Conteúdos de '+title.textContent+'</h3><p>'+c[title.textContent]+'</p><p>✨ Estude no seu ritmo!</p>';box.classList.remove('hidden')}
-function summary(){box.innerHTML='<h3>📝 Meu resumo</h3><textarea style="width:100%;height:180px;border:1px solid #efd9e2;border-radius:14px;padding:12px" placeholder="Escreva seu resumo aqui..."></textarea><button class="btn" onclick="alert(\'Resumo salvo! ✨\')">Salvar resumo</button>';box.classList.remove('hidden')}
-function quiz(){alert('🧠 Quiz de '+title.textContent+' em breve! ✨')}
-</script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sweet Study 💗</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff7fb;
+  color:#634d5b;
+}
+
+header{
+  text-align:center;
+  padding:35px 20px 20px;
+}
+
+h1{
+  font-size:42px;
+  color:#9b627f;
+  margin:10px 0;
+}
+
+.subtitle{
+  font-size:18px;
+  color:#765f6c;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.subject{
+  background:white;
+  border-radius:25px;
+  padding:25px;
+  margin:18px 0;
+  box-shadow:0 5px 20px #eadce4;
+}
+
+.subject h2{
+  margin:0 0 8px;
+  color:#704d60;
+}
+
+.subject p{
+  margin:5px 0 20px;
+}
+
+button{
+  border:0;
+  border-radius:20px;
+  padding:13px 22px;
+  margin:5px;
+  background:#d47fa7;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+}
+
+button:hover{
+  opacity:.85;
+}
+
+#content{
+  display:none;
+  background:white;
+  border-radius:25px;
+  padding:25px;
+  margin-top:25px;
+  box-shadow:0 5px 20px #eadce4;
+}
+
+.question{
+  background:#fff7fb;
+  padding:18px;
+  border-radius:18px;
+  margin:15px 0;
+}
+
+.answer{
+  display:block;
+  width:100%;
+  margin:8px 0;
+  background:#b86d91;
+}
+
+.correct{
+  background:#70b77e !important;
+}
+
+.wrong{
+  background:#d96b6b !important;
+}
+
+.score{
+  font-size:22px;
+  font-weight:bold;
+  margin-top:20px;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div style="font-size:45px">🌷✨</div>
+  <h1>Study a little,<br>dream a lot.</h1>
+  <div class="subtitle">
+    Seu cantinho aesthetic de estudos 💗
+  </div>
+</header>
+
+<div class="container">
+
+<h2>📚 Minhas matérias</h2>
+
+<div id="subjects"></div>
+
+<div id="content"></div>
+
+</div>
+
+<footer>
+  Feito com 💗 para estudar
+</footer>
+
+<script>
+
+const subjects = {
+
+"➗ Matemática":{
+description:"Exercícios, revisões e desafios",
+summary:`
+<h2>➗ Resumo de Matemática</h2>
+<h3>Frações</h3>
+<p>Frações representam partes de um todo. O número de cima é o numerador e o de baixo é o denominador.</p>
+
+<h3>Equações</h3>
+<p>Em uma equação, procuramos o valor desconhecido. Exemplo: x + 5 = 10 → x = 5.</p>
+
+<h3>Porcentagem</h3>
+<p>Porcentagem representa uma parte de 100. Exemplo: 20% = 20/100 = 0,20.</p>
+
+<h3>Geometria</h3>
+<p>Perímetro é a soma dos lados. Área é a medida da superfície de uma figura.</p>
+`,
+quiz:[
+["Quanto é 1/2 + 1/2?",["1","2","1/4","1/2"],0],
+["Se x + 4 = 10, quanto vale x?",["4","5","6","14"],2],
+["Quanto é 20% de 100?",["10","20","30","40"],1]
+]
+},
+
+"🏛️ História":{
+description:"Resumos e conteúdos históricos",
+summary:`
+<h2>🏛️ Resumo de História</h2>
+<h3>Renascimento</h3>
+<p>Movimento cultural iniciado na Europa que valorizou a razão, a ciência, as artes e o ser humano.</p>
+
+<h3>Grandes Navegações</h3>
+<p>Foram viagens marítimas realizadas principalmente por portugueses e espanhóis em busca de novas rotas comerciais.</p>
+
+<h3>Mercantilismo</h3>
+<p>Conjunto de práticas econômicas usadas pelos Estados europeus, com forte intervenção do governo e busca por metais preciosos.</p>
+`,
+quiz:[
+["Onde começou o Renascimento?",["Europa","África","América","Oceania"],0],
+["Quem realizou as Grandes Navegações?",["Romanos","Portugueses e espanhóis","Incas","Egípcios"],1],
+["O mercantilismo estava ligado principalmente a:",["Economia","Astronomia","Medicina","Esportes"],0]
+]
+},
+
+"📖 Português":{
+description:"Gramática e interpretação",
+summary:`
+<h2>📖 Resumo de Português</h2>
+<h3>Paráfrase</h3>
+<p>É a reescrita de um texto mantendo a ideia principal, mas usando outras palavras.</p>
+
+<h3>Paródia</h3>
+<p>É uma recriação de uma obra ou texto, geralmente modificando seu sentido para produzir humor ou crítica.</p>
+
+<h3>Classes de palavras</h3>
+<p>Substantivos nomeiam seres e objetos. Adjetivos caracterizam. Verbos indicam ações, estados ou fenômenos.</p>
+`,
+quiz:[
+["O que é uma paráfrase?",["Uma cópia exata","Uma reescrita mantendo a ideia","Uma música","Uma pergunta"],1],
+["Qual palavra é um verbo?",["Bonito","Casa","Correr","Azul"],2],
+["O adjetivo serve para:",["Caracterizar","Nomear","Contar","Perguntar"],0]
+]
+},
+
+"🌎 Geografia":{
+description:"Mapas e revisões",
+summary:`
+<h2>🌎 Resumo de Geografia</h2>
+<h3>Biomas</h3>
+<p>Biomas são grandes conjuntos de ecossistemas com características semelhantes de clima, vegetação e fauna.</p>
+
+<h3>Caatinga</h3>
+<p>Predomina no Nordeste brasileiro. Possui clima semiárido e vegetação adaptada à pouca disponibilidade de água.</p>
+
+<h3>Pampa</h3>
+<p>Está localizado principalmente no Rio Grande do Sul e apresenta predominância de campos e gramíneas.</p>
+`,
+quiz:[
+["Qual bioma é característico do semiárido nordestino?",["Amazônia","Caatinga","Pampa","Pantanal"],1],
+["O Pampa brasileiro está principalmente em:",["RS","AM","BA","SP"],0],
+["Biomas possuem características de:",["Clima e vegetação","Somente cidades","Somente rios","Somente montanhas"],0]
+]
+},
+
+"🇺🇸 Inglês":{
+description:"Vocabulário e gramática",
+summary:`
+<h2>🇺🇸 Resumo de Inglês</h2>
+<h3>Simple Present</h3>
+<p>É usado para hábitos, rotinas e fatos. Exemplo: I study every day.</p>
+
+<h3>Verb to be</h3>
+<p>Am, is e are são formas do verbo "to be".</p>
+
+<h3>Vocabulário</h3>
+<p>Study = estudar. School = escola. Book = livro. Teacher = professor.</p>
+`,
+quiz:[
+["Qual é a tradução de 'book'?",["Caneta","Livro","Escola","Professor"],1],
+["Complete: I ___ a student.",["is","are","am","be"],2],
+["Simple Present é usado principalmente para:",["Rotinas e hábitos","Apenas passado","Somente futuro","Perguntas"],0]
+]
+},
+
+"🎨 Artes":{
+description:"Arte, artistas e movimentos",
+summary:`
+<h2>🎨 Resumo de Artes</h2>
+<h3>Arte</h3>
+<p>A arte é uma forma de expressão humana que pode aparecer na pintura, música, dança, escultura, teatro e outras linguagens.</p>
+
+<h3>Renascimento</h3>
+<p>Na arte renascentista, destacaram-se a valorização do ser humano, o realismo e o estudo da perspectiva.</p>
+`,
+quiz:[
+["Qual é uma linguagem artística?",["Pintura","Matemática","Geografia","Química"],0],
+["O Renascimento valorizou:",["O ser humano","Somente guerras","Somente máquinas","Nenhuma arte"],0],
+["A escultura é uma forma de:",["Arte","Geografia","Matemática","Gramática"],0]
+]
+}
+
+};
+
+const subjectsBox=document.getElementById("subjects");
+const content=document.getElementById("content");
+
+for(const name in subjects){
+
+  const s=subjects[name];
+
+  const card=document.createElement("div");
+  card.className="subject";
+
+  card.innerHTML=`
+    <h2>${name}</h2>
+    <p>${s.description}</p>
+    <button onclick="showSummary('${name}')">📝 Resumo</button>
+    <button onclick="showQuiz('${name}')">🧠 Quiz</button>
+  `;
+
+  subjectsBox.appendChild(card);
+}
+
+function showSummary(name){
+
+  content.style.display="block";
+
+  content.innerHTML=
+    subjects[name].summary+
+    `<br>
+     <button onclick="closeContent()">← Voltar</button>`;
+
+  content.scrollIntoView({behavior:"smooth"});
+}
+
+function showQuiz(name){
+
+  content.style.display="block";
+
+  let html=`
+    <h2>🧠 Quiz de ${name}</h2>
+    <p>Escolha uma alternativa em cada questão:</p>
+  `;
+
+  subjects[name].quiz.forEach((q,i)=>{
+
+    html+=`
+      <div class="question">
+        <h3>${i+1}. ${q[0]}</h3>
+    `;
+
+    q[1].forEach((answer,j)=>{
+
+      html+=`
+        <button class="answer"
+          onclick="answerQuestion(this,${j},${q[2]})">
+          ${answer}
+        </button>
+      `;
+
+    });
+
+    html+=`</div>`;
+
+  });
+
+  html+=`
+    <div id="score" class="score"></div>
+    <button onclick="closeContent()">← Voltar</button>
+  `;
+
+  content.innerHTML=html;
+
+  content.scrollIntoView({behavior:"smooth"});
+}
+
+let points=0;
+let answered=0;
+
+function answerQuestion(button,chosen,correct){
+
+  const question=button.parentElement;
+
+  if(question.dataset.done==="yes") return;
+
+  question.dataset.done="yes";
+
+  const buttons=question.querySelectorAll(".answer");
+
+  buttons.forEach(b=>b.disabled=true);
+
+  if(chosen===correct){
+
+    button.classList.add("correct");
+    points++;
+
+  }else{
+
+    button.classList.add("wrong");
+    buttons[correct].classList.add("correct");
+
+  }
+
+  answered++;
+
+  const total=question.parentElement.querySelectorAll(".question").length;
+
+  if(answered===total){
+
+    document.getElementById("score").innerHTML=
+      `🎉 Você acertou ${points} de ${total}!`;
+
+  }
+}
+
+function closeContent(){
+
+  content.style.display="none";
+
+  points=0;
+  answered=0;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
